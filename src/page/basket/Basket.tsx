@@ -1,9 +1,11 @@
 import React from "react";
-import { Box, Button, makeStyles } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import { useRecoilValue } from "recoil";
+import { Box, makeStyles } from "@material-ui/core";
+import { basketUserDataState } from "../../states/basketState";
+import TwoButtonGroup from "../../layout/TwoButtonGroup";
+import BasketHeader from "../../components/basket/BasketHeader";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     flexDirection: "column",
@@ -26,24 +28,29 @@ const useStyles = makeStyles((theme) => ({
 
 const Basket = () => {
   const classes = useStyles();
+  const basketUserData = useRecoilValue(basketUserDataState);
+  
   return (
     <Box className={classes.root}>
       <Box className={classes.topBox}>
-        <CloseIcon />
-        <div>오승익</div>
-        <div>2021.7.19. 오후 5:30</div>
-        <Button>
-          <AddCircleOutlineIcon />
-          시술
-        </Button>
-        <Button>
-          <AddCircleOutlineIcon />
-          할인
-        </Button>
+        <BasketHeader name={basketUserData.name} date={basketUserData.date}/>
+        <TwoButtonGroup
+          left={["시술","rgba(211, 211, 224, 0.3)"]}
+          right={['할인',"rgb(253,240,245)"]}
+        />
       </Box>
       <Box className={classes.middleBox}>asdf</Box>
       <Box className={classes.bottomBox}>
-        <div style={{ flex: 8, display: "flex", alignItems: "center" ,justifyContent:'space-between', padding: '0 100px 0 30px', fontSize: '30px'}}>
+        <div
+          style={{
+            flex: 8,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "0 100px 0 30px",
+            fontSize: "30px",
+          }}
+        >
           <span>합계:</span>
           <span>1000 원</span>
         </div>

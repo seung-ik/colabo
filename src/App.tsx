@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme)=>({
     width: '50%',
     height: '95vh',
     margin:'auto',
-    marginTop: '30px',
+    marginTop: '20px',
     border: '2px solid rgba(242, 237, 246, 0.25)'
   }
 }))
